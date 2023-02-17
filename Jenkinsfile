@@ -1,4 +1,6 @@
 def registry = 'https://devopshunger.jfrog.io/'
+def imageName = 'devopshunger.jfrog.io/devopsintern-docker-local/ttrend'
+def version   = '2.0.2'
 pipeline{
     agent {
         node {
@@ -60,8 +62,6 @@ pipeline{
                      echo '<--------------- Jar Publish Ended --------------->'  
             
             }
-            def imageName = 'devopshunger.jfrog.io/devopsintern-docker-local/ttrend'
-   def version   = '2.0.2'
     stage(" Docker Build ") {
       steps {
         script {
