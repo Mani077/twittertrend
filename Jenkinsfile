@@ -16,8 +16,8 @@ pipeline{
                 echo "------------ build started ---------"
                 sh 'mvn clean deploy -Dmaven.test.skip=true'
                 echo "------------ build completed ---------"
+            }
         }
-      }
 
         stage('Unit Test') {
             steps {
@@ -35,7 +35,7 @@ pipeline{
                 echo '<--------------- Sonar Analysis started  --------------->'
                 withSonarQubeEnv('valaxy-sonarqube-server') {    
                     sh "${scannerHome}/bin/sonar-scanner"
-                echo '<--------------- Sonar Analysis stopped  --------------->'
+                    echo '<--------------- Sonar Analysis stopped  --------------->'
                 }         
             }   
         }
@@ -62,18 +62,18 @@ pipeline{
                      echo '<--------------- Jar Publish Ended --------------->'  
             
             }
-   stage(" Docker Build ") {
-      steps {
-        script {
-           echo '<--------------- Docker Build Started --------------->'
-           app = docker.build(imageName+":"+version)
-           echo '<--------------- Docker Build Ends --------------->'
+        stage(" Docker Build ") {
+            steps {
+                script {
+                    echo '<--------------- Docker Build Started --------------->'
+                    app = docker.build(imageName+":"+version)
+                    echo '<--------------- Docker Build Ends --------------->'
+                }
+            }
         }
-      }
-    }
 
-            stage (" Docker Publish "){
-                 steps {
+        stage (" Docker Publish "){
+            steps {
                  script {
                         echo '<--------------- Docker Publish Started --------------->'  
                         docker.withRegistry(registry, 'Jfrog'){
@@ -81,9 +81,7 @@ pipeline{
                         }    
                         echo '<--------------- Docker Publish Ended --------------->'  
                 }
-                }
             }
-        }   
+        }
     }   
-    }
-    }
+} 
