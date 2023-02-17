@@ -11,6 +11,11 @@ pipeline{
         PATH = "/opt/maven/bin:$PATH"
     }
     stages {
+     stage('build'){
+      steps{
+      git branch: 'main', url: 'https://github.com/Mani077/twittertrend.git'
+      }
+     }
         stage('build') {
             steps{
                 echo "------------ build started ---------"
