@@ -11,7 +11,7 @@ pipeline{
         PATH = "/opt/maven/bin:$PATH"
     }
     stages {
-     stage('build'){
+     stage('SCM checkout'){
       steps{
       git branch: 'main', url: 'https://github.com/Mani077/twittertrend.git'
       }
