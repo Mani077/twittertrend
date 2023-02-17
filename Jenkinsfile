@@ -1,6 +1,6 @@
-def registry = 'https://devopshunger.jfrog.io/'
-def imageName = 'devopshunger.jfrog.io/devopsintern-docker-local/ttrend'
-def version   = '2.0.2'
+ def registry = 'https://devopshunger.jfrog.io/'
+ def imageName = 'devopshunger.jfrog.io/devopsintern-docker-local/ttrend'
+ def version   = '2.0.2'
 pipeline{
     agent {
         node {
@@ -62,7 +62,7 @@ pipeline{
                      echo '<--------------- Jar Publish Ended --------------->'  
             
             }
-    stage(" Docker Build ") {
+   stage(" Docker Build ") {
       steps {
         script {
            echo '<--------------- Docker Build Started --------------->'
@@ -73,16 +73,16 @@ pipeline{
     }
 
             stage (" Docker Publish "){
-        steps {
-            script {
-               echo '<--------------- Docker Publish Started --------------->'  
-                docker.withRegistry(registry, 'jfrogforjenkins'){
-                    app.push()
-                }    
-               echo '<--------------- Docker Publish Ended --------------->'  
+                 steps {
+                 script {
+                        echo '<--------------- Docker Publish Started --------------->'  
+                        docker.withRegistry(registry, 'Jfrog'){
+                        app.push()
+                        }    
+                        echo '<--------------- Docker Publish Ended --------------->'  
+                }
+                }
             }
-        }
-    }
         }   
     }   
     }
