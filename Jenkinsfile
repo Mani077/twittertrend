@@ -66,7 +66,7 @@ pipeline{
                      server.publishBuildInfo(buildInfo)
                      echo '<--------------- Jar Publish Ended --------------->'  
             
-            }
+            }}}
         stage(" Docker Build ") {
             steps {
                 script {
@@ -90,4 +90,4 @@ pipeline{
         }
     }   
 } 
-    }}
+    
