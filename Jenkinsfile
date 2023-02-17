@@ -1,4 +1,4 @@
- def registry = 'https://devopshunger.jfrog.io/'
+def registry = 'https://devopshunger.jfrog.io/'
 pipeline{
     agent {
         node {
@@ -86,4 +86,4 @@ pipeline{
         }   
     }   
     }
-    } 
+    }
